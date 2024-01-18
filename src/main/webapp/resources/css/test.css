@@ -1,0 +1,26 @@
+ul {
+  list-style-type: none;
+  height: 48px;
+  width: 100%;
+  background-color: #30426E;
+  display: flex;
+}
+
+ul > li {
+  color: lightgray;
+  height : 100%;
+  width:90px;
+  display:flex;
+  align-items: center;
+}
+
+
+h2 {
+  height: 48px;
+  width: 100%;
+  background-color: #30426E;
+  display: block;
+  color: #30426E;
+  padding: 10px;
+  text-align: center;
+}
