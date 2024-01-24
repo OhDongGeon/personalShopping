@@ -20,11 +20,8 @@ public class CategoryController {
 
         List<CategoryDto> categoryList = categoryService.searchCategory();
 
-        List<CategoryDto> collect = categoryList.stream()
-            .filter(e -> e.getParentCategoryId() == null).collect(Collectors.toList());
-
-        for (CategoryDto categoryDto : collect) {
-            System.out.println(categoryDto.toString());
+        for (CategoryDto categoryDto : categoryList) {
+            System.out.println(categoryDto.getCategoryName());
         }
 
         model.addAttribute("list", categoryList);
