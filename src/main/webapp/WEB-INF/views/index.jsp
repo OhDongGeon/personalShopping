@@ -3,17 +3,30 @@
 <html>
 <head>
     <title>Index</title>
-    <link href="<c:url value="/resources/css/test.css" />" rel="stylesheet">
 </head>
 <body>
-    <h2>hello spring framework!!</h2>
-
-    <div id="menu">
-        <ul>
-            <li id="logo">dsad</li>
-            <li><a >Home</a></li>
-            <li><a >Board</a></li>
-        </ul>
+<header class="header">
+    <div>
+        <nav>
+            <ul>
+                <c:forEach items="${list}" var="category">
+                    <c:if test="${category.parentCategoryId == null}">
+                        <li><a href="">${category.categoryName}</a>
+                            <ul class="dropdown">
+                                <c:forEach items="${list}" var="subcategory">
+                                    <c:if test="${subcategory.parentCategoryId == category.categoryId}">
+                                        <li>
+                                            <a href="http://localhost:8080/${subcategory.categoryId}">${subcategory.categoryName}</a>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </c:if>
+                </c:forEach>
+            </ul>
+        </nav>
     </div>
+</header>
 </body>
 </html>
