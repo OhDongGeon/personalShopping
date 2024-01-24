@@ -5,7 +5,6 @@
     <title>Index</title>
 </head>
 <body>
-<header class="header">
     <div>
         <nav>
             <ul>
@@ -27,6 +26,4 @@
             </ul>
         </nav>
     </div>
-</header>
 </body>
-</html>
