@@ -14,6 +14,7 @@
     <maven.compiler.target>11</maven.compiler.target>
     <java-version>11</java-version>
     <org.springframework-version>5.3.31</org.springframework-version>
+    <org.security-version>5.4.2</org.security-version>
     <org.slf4j-version>2.0.11</org.slf4j-version>
     <org.apache.tiles-version>3.0.8</org.apache.tiles-version>
   </properties>
@@ -38,24 +39,44 @@
       <version>${org.springframework-version}</version>
     </dependency>
 
+    <!-- Spring Security -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${org.security-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${org.security-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${org.security-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>${org.security-version}</version>
+    </dependency>
+
     <!-- Logging -->
-<!--    <dependency>-->
-<!--      <groupId>org.slf4j</groupId>-->
-<!--      <artifactId>slf4j-api</artifactId>-->
-<!--      <version>${org.slf4j-version}</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.slf4j</groupId>-->
-<!--      <artifactId>jcl-over-slf4j</artifactId>-->
-<!--      <version>${org.slf4j-version}</version>-->
-<!--      <scope>runtime</scope>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>ch.qos.logback</groupId>-->
-<!--      <artifactId>logback-classic</artifactId>-->
-<!--      <version>1.4.14</version>-->
-<!--      <scope>test</scope>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${org.slf4j-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${org.slf4j-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.4.14</version>
+    </dependency>
 
     <!-- javax.servlet-api -->
     <dependency>
@@ -120,7 +141,6 @@
       <scope>test</scope>
     </dependency>
 
-
     <!--  tiles  -->
     <dependency>
       <groupId>org.apache.tiles</groupId>
@@ -146,7 +166,6 @@
 
   <build>
     <finalName>shopping</finalName>
-
     <plugins>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
