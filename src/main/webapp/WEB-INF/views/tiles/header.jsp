@@ -35,8 +35,8 @@
             <div class="col-lg-3">
                 <div class="header__right">
                     <div class="header__right__auth">
-                        <a href="<c:url value='/member/login'/>">로그인</a>
-                        <a href="<c:url value='/member/login'/>">회원가입</a>
+                        <a href="<c:url value='/sign/in'/>">로그인</a>
+                        <a href="<c:url value='/sign/in'/>">회원가입</a>
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>

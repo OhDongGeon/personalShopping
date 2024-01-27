@@ -11,17 +11,16 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
             .authorizeRequests()
-            .antMatchers("/resources/**", "/", "/member/login").permitAll() // 정적 리소스에 대한 접근 허용
+            .antMatchers("/resources/**", "/", "/sign/in").permitAll() // 정적 리소스에 대한 접근 허용
             .anyRequest().authenticated()
             .and()
             .formLogin()
-            .loginPage("/member/login")
+            .loginPage("/sign/in")
             .and()
             .cors()
             .and()
@@ -29,5 +28,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .httpBasic();
     }
-
 }

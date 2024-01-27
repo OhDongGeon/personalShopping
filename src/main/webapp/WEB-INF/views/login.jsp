@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <body>
     <div>
-
         <input type='radio' name='gender' value='con' />컨슈머
         <input type='radio' name='gender' value='sell' />셀러
         <input type="text" name="id" value="" placeholder="이메일 입력" autofocus>
