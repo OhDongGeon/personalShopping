@@ -1,0 +1,3 @@
+### 이메일 중복확인
+GET http://localhost:8080/sign/up/check-duplication/1
+Content-Type: application/json
