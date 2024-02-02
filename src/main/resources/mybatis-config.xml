@@ -9,6 +9,6 @@
 
   <typeAliases>
     <typeAlias alias="Category" type="org.personal.shopping.domain.category.domain.Category"/>
+    <typeAlias alias="Consumer" type="org.personal.shopping.domain.consumer.domain.Consumer"/>
   </typeAliases>
-
 </configuration>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.personal.shopping.domain.mapper.ConsumerMapper">
+
+  <!-- 구매자 이메일 기준으로 조회 -->
+  <select id="findByConsumerEmail" parameterType="String" resultType="Consumer">
+    select *
+      from consumer
+     where email = #{email}
+  </select>
+
+  <!--  구매자 이메일 확인-->
+  <select id="existsByConsumerEmail" parameterType="String" resultType="boolean">
+    select exists ( select 1
+                      from consumer
+                     where email = #{email} )
+  </select>
+
+
+
+  <insert id="consumerSave" parameterType="Consumer">
+    insert
+      into consumer
+         ( email, password, name, phone_number )
+    values
+         ( #{email}, #{password}, #{name}, #{phoneNumber} )
+  </insert>
+</mapper>
