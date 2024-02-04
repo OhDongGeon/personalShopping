@@ -2,6 +2,7 @@ package org.personal.shopping.domain.consumer.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.personal.shopping.domain.consumer.domain.Consumer;
+import org.personal.shopping.domain.consumer.domel.dto.LoginDto;
 import org.personal.shopping.domain.consumer.domel.form.SignIn;
 import org.personal.shopping.domain.consumer.domel.form.SignUp;
 import org.personal.shopping.domain.mapper.ConsumerMapper;
@@ -23,20 +24,16 @@ public class ConsumerService {
 
 
     // 구매자 로그인
-    public Consumer signInFunction(SignIn signIn) {
+    public LoginDto signInFunction(SignIn signIn) {
 
-        try {
-            Consumer consumer = consumerMapper.findByConsumerEmail(signIn.getEmail())
-                .orElseThrow(() -> new FindException(ErrorCode.NOT_EMAIL_PASSWORD));
+        Consumer consumer = consumerMapper.findByConsumerEmail(signIn.getEmail())
+            .orElseThrow(() -> new FindException(ErrorCode.NOT_EMAIL_PASSWORD));
 
-            if (!securityConfig.passwordEncoder().matches(signIn.getPassword(), consumer.getPassword())) {
-                throw new FindException(ErrorCode.NOT_EMAIL_PASSWORD);
-            }
-
-            return consumer;
-        } catch (FindException ex) {
-            throw ex;
+        if (!securityConfig.passwordEncoder().matches(signIn.getPassword(), consumer.getPassword())) {
+            throw new FindException(ErrorCode.NOT_EMAIL_PASSWORD);
         }
+
+        return LoginDto.from(consumer);
     }
 
     // 이메일 중복확인
@@ -51,6 +48,6 @@ public class ConsumerService {
         String passwordEncode = securityConfig.passwordEncoder().encode(signUp.getPassword());
         signUp.setPassword(passwordEncode);
 
-        return  consumerMapper.consumerSave(signUp);
+        return consumerMapper.consumerSave(signUp);
     }
 }

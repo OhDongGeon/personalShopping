@@ -7,7 +7,7 @@
     <form:form modelAttribute="signIn" action="/sign/in" method="post">
         <div>
             <form:input path="email" id="email" placeholder="이메일" onblur="checkEmailEmpty()"/><br>
-            <span id="emailError" class="error"><form:errors path="email" cssClass="text-danger"/></span><br>
+            <span id="emailError" class="error"><form:errors path="email" cssClass="text-danger"/></span>
         </div>
         <div>
             <form:input path="password" id="password" type="password" placeholder="비밀번호" onblur="checkPasswordEmpty()"/><br>
@@ -29,13 +29,13 @@
 
             const email = document.getElementById('email').value;
             const emailError = document.getElementById('emailError');
-            //
-            // if (!email) {
-            //     emailError.innerText = '이메일을 입력하세요.';
-            //     return;
-            // }
-            //
-            // emailError.innerText = '';
+
+            if (!email) {
+                emailError.innerText = '이메일을 입력하세요.';
+                return;
+            }
+
+            emailError.innerText = '';
         }
 
         // 비밀번호 공백 확인
@@ -43,14 +43,14 @@
 
             const password = document.getElementById('password').value;
             const passwordError = document.getElementById('passwordError');
-            //
-            // if (!password) {
-            //
-            //   passwordError.innerText = '비밀번호를 입력하세요.';
-            //   return;
-            // }
-            //
-            // passwordError.innerText = '';
+
+            if (!password) {
+
+              passwordError.innerText = '비밀번호를 입력하세요.';
+              return;
+            }
+
+            passwordError.innerText = '';
         }
     </script>
 
