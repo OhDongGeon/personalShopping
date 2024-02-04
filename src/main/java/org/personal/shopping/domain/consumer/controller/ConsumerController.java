@@ -2,8 +2,9 @@ package org.personal.shopping.domain.consumer.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import org.personal.shopping.domain.consumer.domain.Consumer;
+import org.personal.shopping.domain.consumer.domel.dto.LoginDto;
 import org.personal.shopping.domain.consumer.domel.form.CheckEmailDuplication;
 import org.personal.shopping.domain.consumer.domel.form.SignIn;
 import org.personal.shopping.domain.consumer.domel.form.SignUp;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,22 +29,27 @@ public class ConsumerController {
     @Autowired
     private ConsumerService consumerService;
 
+
     // 구매자 로그인
     @PostMapping("/in")
     public String signInFunction(@ModelAttribute("signIn") @Valid SignIn signIn,
-        BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpSession httpSession) {
 
         try {
             if (bindingResult.hasErrors()) {
                 return "/signIn";
             }
 
-            Consumer consumer = consumerService.signInFunction(signIn);
-            model.addAttribute("consumer", consumer);
+            LoginDto loginDto = consumerService.signInFunction(signIn);
+
+            httpSession.setAttribute("userId", loginDto.getEmail());
+            httpSession.setAttribute("userName", loginDto.getName());
+
             return "redirect:/";
 
         } catch (FindException ex) {
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
+            redirectAttributes.addFlashAttribute("signIn", signIn);
             return "redirect:/auth/sign-in";
         }
     }
@@ -67,7 +72,7 @@ public class ConsumerController {
         boolean checkDuplication = consumerService.signUpCheckDuplication(email.getEmail());
 
         return checkDuplication ? new ResponseEntity<>(HttpStatus.CONFLICT)
-                                : new ResponseEntity<>(HttpStatus.OK);
+            : new ResponseEntity<>(HttpStatus.OK);
     }
 
     // 구매자 회원가입

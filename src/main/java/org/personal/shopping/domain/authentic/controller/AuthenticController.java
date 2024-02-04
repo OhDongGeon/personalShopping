@@ -1,5 +1,6 @@
 package org.personal.shopping.domain.authentic.controller;
 
+import javax.servlet.http.HttpSession;
 import org.personal.shopping.domain.consumer.domel.form.SignIn;
 import org.personal.shopping.domain.consumer.domel.form.SignUp;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,9 @@ public class AuthenticController {
     @GetMapping("/sign-in")
     public String loginForm(Model model) {
 
-        model.addAttribute("signIn", new SignIn());
+        if (!model.containsAttribute("signIn")) {
+            model.addAttribute("signIn", new SignIn());
+        }
         return "signIn";
     }
 
@@ -25,5 +28,13 @@ public class AuthenticController {
 
         model.addAttribute("signUp", new SignUp());
         return "signUp";
+    }
+
+    // 로그아웃
+    @GetMapping("/sign-off")
+    public String logout(HttpSession session) {
+
+        session.invalidate();
+        return "redirect:/";
     }
 }
