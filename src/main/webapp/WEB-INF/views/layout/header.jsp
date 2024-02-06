@@ -20,12 +20,12 @@
                         </li>
                         <c:forEach items="${categoryList}" var="category">
                             <c:if test="${category.parentCategoryId == null}">
-                                <li><a href="">${category.categoryName}</a>
+                                <li><a href="<c:url value='/products?main=${category.categoryId}'/>">${category.categoryName}</a>
                                     <ul class="dropdown">
                                         <c:forEach items="${categoryList}" var="subcategory">
                                             <c:if test="${subcategory.parentCategoryId == category.categoryId}">
                                                 <li>
-                                                    <a href="http://localhost:8080/${subcategory.categoryId}">${subcategory.categoryName}</a>
+                                                    <a href="<c:url value='/products?main=${category.categoryId}&sub=${subcategory.categoryId}'/>">${subcategory.categoryName}</a>
                                                 </li>
                                             </c:if>
                                         </c:forEach>

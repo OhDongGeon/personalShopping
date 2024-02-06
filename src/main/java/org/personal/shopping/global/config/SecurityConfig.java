@@ -19,12 +19,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
             .authorizeRequests()
-                .antMatchers("/resources/**", "/", "/auth/**", "/sign/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/resources/**").permitAll()
+//                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             .and()
-            .formLogin()
-                .loginPage("/auth/sign-in")
-            .and()
+//            .formLogin()
+//                .loginPage("/auth/sign-in")
+//            .and()
             .cors()
             .and()
             .csrf().disable();
