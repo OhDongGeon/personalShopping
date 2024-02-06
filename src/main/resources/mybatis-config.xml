@@ -8,7 +8,13 @@
   </settings>
 
   <typeAliases>
-    <typeAlias alias="Category" type="org.personal.shopping.domain.category.domain.Category"/>
+    <!-- 회원 -->
     <typeAlias alias="Consumer" type="org.personal.shopping.domain.consumer.domain.Consumer"/>
+
+    <!-- 카테고리 -->
+    <typeAlias alias="CategoryBasic" type="org.personal.shopping.domain.category.domain.CategoryBasic"/>
+
+    <!-- 상품 -->
+    <typeAlias alias="ProductGrid" type="org.personal.shopping.domain.product.domain.ProductGrid"/>
   </typeAliases>
 </configuration>
