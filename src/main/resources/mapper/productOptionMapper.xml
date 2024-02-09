@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.personal.shopping.domain.mapper.ProductOptionMapper">
+
+  <!-- 상품 아이디 기준 컬러 조회 -->
+  <select id="findColorByProductId" parameterType="Long" resultType="ProductColor">
+    select distinct
+           option_color
+         , rgb_value
+      from product_option
+     where product_id = #{productId}
+  </select>
+
+  <!-- 상품 아이디 기준 사이즈 조회 -->
+  <select id="findSizeByProductId" parameterType="Long" resultType="ProductSize">
+    select distinct
+           option_size
+      from product_option
+     where product_id = #{productId}
+  </select>
+</mapper>

@@ -5,11 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductGrid {
+public class Product {
 
     private Long productId;
     private String productName;
     private Long price;
-    private Long categoryId;
-    private String imageUrl;
 }

@@ -3,6 +3,7 @@ package org.personal.shopping.domain.mapper;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.personal.shopping.domain.product.domain.Product;
 import org.personal.shopping.domain.product.domain.ProductGrid;
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +26,7 @@ public interface ProductMapper {
     List<ProductGrid> findProductBySubCategory(@Param("categoryId") Long categoryId,
                                                @Param("offset") int offset,
                                                @Param("pageSize") int pageSize);
+
+    // 상품 아이디 기준 정보 조회
+    Product findByProductId(Long productId);
 }

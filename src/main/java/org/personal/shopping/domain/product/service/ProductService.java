@@ -2,8 +2,17 @@ package org.personal.shopping.domain.product.service;
 
 import java.util.List;
 import java.util.Optional;
+import org.personal.shopping.domain.mapper.ProductDescriptionMapper;
+import org.personal.shopping.domain.mapper.ProductImageMapper;
 import org.personal.shopping.domain.mapper.ProductMapper;
+import org.personal.shopping.domain.mapper.ProductOptionMapper;
+import org.personal.shopping.domain.product.domain.Product;
+import org.personal.shopping.domain.product.domain.ProductDescription;
 import org.personal.shopping.domain.product.domain.ProductGrid;
+import org.personal.shopping.domain.product.domain.ProductImage;
+import org.personal.shopping.domain.product.model.dto.ProductColorDto;
+import org.personal.shopping.domain.product.model.dto.ProductDetailDto;
+import org.personal.shopping.domain.product.model.dto.ProductSizeDto;
 import org.personal.shopping.global.util.PageHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +22,15 @@ public class ProductService {
 
     @Autowired
     private ProductMapper productMapper;
+
+    @Autowired
+    private ProductImageMapper productImageMapper;
+
+    @Autowired
+    private ProductOptionMapper productOption;
+
+    @Autowired
+    private ProductDescriptionMapper productDescriptionMapper;
 
 
     // 페이지를 위한 총 상품 수
@@ -39,5 +57,28 @@ public class ProductService {
     private int pageOffset(int page, int pageSize) {
 
         return Math.max((page - 1) * pageSize, 0);
+    }
+
+    // 상품 정보 조회
+    public ProductDetailDto getProductDetail(Long productId) {
+
+        // 상품 아이디 기준 이미지 조회
+        List<ProductImage> productImages = productImageMapper.findByProductId(productId);
+
+        // 상품 아이디 기준 정보 조회
+        Product product = productMapper.findByProductId(productId);
+
+        // 상품 아이디 기준 컬러 조회
+        List<ProductColorDto> productColors = productOption.findColorByProductId(productId);
+
+        // 상품 아이디 기준 사이즈 조회
+        List<ProductSizeDto> productSizes = productOption.findSizeByProductId(productId);
+
+        // 상품 아이디 기준 상세 설명 조회
+        List<ProductDescription> productDescriptions =
+            productDescriptionMapper.findByProductId(productId);
+
+        return ProductDetailDto.of(
+            productImages, product, productColors, productSizes, productDescriptions);
     }
 }

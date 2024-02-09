@@ -15,7 +15,7 @@ inner join category        ca2
      where ca2.category_id = #{categoryId}
   </select>
 
-  <!--  하위 카테고리 기준 상품 총 수 -->
+  <!-- 하위 카테고리 기준 상품 총 수 -->
   <select id="totalProductBySubCategory" resultType="int">
     select count(pr.product_id) total_count
       from product        pr
@@ -24,37 +24,50 @@ inner join category       ca
     where ca.category_id = #{categoryId}
   </select>
 
-  <!--  상위 카테고리 기준 상품 조회 -->
+  <!-- 상위 카테고리 기준 상품 조회 -->
   <select id="findProductByCategory" resultType="ProductGrid">
     select pr.product_id
          , pr.product_name
          , pr.price
+         , pr.category_id
          , pri.image_url
-      from product   	     pr
-inner join category        ca1
-        on ca1.category_id = pr.category_id
-inner join category        ca2
-        on ca2.category_id = ca1.parent_category_id
-inner join product_image	 pri
-        on pri.product_id  = pr.product_id
+      from product   	         pr
+inner join category            ca1
+        on ca1.category_id     = pr.category_id
+inner join category            ca2
+        on ca2.category_id     = ca1.parent_category_id
+inner join product_image	     pri
+        on pri.product_id      = pr.product_id
+       and pri.main_image_flag = 'Y'
      where ca2.category_id = #{categoryId}
   order by pr.product_id
      limit #{offset}, #{pageSize}
   </select>
 
-  <!--  하위 카테고리 기준 상품 조회 -->
+  <!-- 하위 카테고리 기준 상품 조회 -->
   <select id="findProductBySubCategory" resultType="ProductGrid">
     select pr.product_id
          , pr.product_name
          , pr.price
+         , pr.category_id
          , pri.image_url
-      from product        pr
-inner join category       ca
-        on ca.category_id = pr.category_id
-inner join product_image	 pri
-        on pri.product_id  = pr.product_id
+      from product             pr
+inner join category            ca
+        on ca.category_id      = pr.category_id
+inner join product_image	     pri
+        on pri.product_id      = pr.product_id
+       and pri.main_image_flag = 'Y'
      where ca.category_id = #{categoryId}
   order by pr.product_id
      limit #{offset}, #{pageSize}
+  </select>
+
+  <!-- 상품 아이디 기준 정보 조회 -->
+  <select id="findByProductId" resultType="Product">
+    select product_id
+         , product_name
+         , price
+      from product
+     where product_id = #{categoryId}
   </select>
 </mapper>

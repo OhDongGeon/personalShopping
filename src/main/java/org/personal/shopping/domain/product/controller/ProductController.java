@@ -5,12 +5,14 @@ import java.util.Optional;
 import org.personal.shopping.domain.category.model.dto.CategoryTabDto;
 import org.personal.shopping.domain.category.service.CategoryService;
 import org.personal.shopping.domain.product.domain.ProductGrid;
+import org.personal.shopping.domain.product.model.dto.ProductDetailDto;
 import org.personal.shopping.domain.product.service.ProductService;
 import org.personal.shopping.global.util.PageHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -48,5 +50,18 @@ public class ProductController {
         model.addAttribute("pageHandler", pageHandler);
 
         return "product";
+    }
+
+    // 상품 정보 조회
+    @GetMapping("/{productId}/categories/{categoryId}")
+    public String getProductDetail(Model model, @PathVariable("productId") Long productId,
+        @PathVariable("categoryId") String categoryId) {
+
+        // 상품 조회
+        ProductDetailDto productDetail = productService.getProductDetail(productId);
+
+        model.addAttribute("productDetail", productDetail);
+
+        return "productDetail";
     }
 }
