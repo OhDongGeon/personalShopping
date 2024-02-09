@@ -27,13 +27,15 @@
                     <div class="row clear-fix">
                     <c:forEach var="product" items="${productGrid}" varStatus="status">
                         <div class="product">
-                            <img src="${product.imageUrl}" alt="${product.productId}">
-                            <h3>${product.productId}</h3>
-                            <p class="price">${product.price}</p>
+                            <a href="<c:url value='/products/${product.productId}/categories/${product.categoryId}'/>">
+                                <img src="${product.imageUrl}" alt="${product.productId}">
+                                <h3>${product.productId}</h3>
+                                <p class="price">${product.price}</p>
+                            </a>
                         </div>
-                        <c:if test="${status.index % 3 == 2}">
-                            </div><div class="row clear-fix">
-                        </c:if>
+<%--                        <c:if test="${status.index % 3 == 2}">--%>
+<%--                            </div><div class="row clear-fix">--%>
+<%--                        </c:if>--%>
                     </c:forEach>
                     </div>
                 </c:otherwise>

@@ -15,6 +15,18 @@
     <typeAlias alias="CategoryBasic" type="org.personal.shopping.domain.category.domain.CategoryBasic"/>
 
     <!-- 상품 -->
+    <typeAlias alias="Product" type="org.personal.shopping.domain.product.domain.Product"/>
     <typeAlias alias="ProductGrid" type="org.personal.shopping.domain.product.domain.ProductGrid"/>
+
+    <!-- 상품 옵션 -->
+    <typeAlias alias="ProductColor" type="org.personal.shopping.domain.product.model.dto.ProductColorDto"/>
+    <typeAlias alias="ProductSize" type="org.personal.shopping.domain.product.model.dto.ProductSizeDto"/>
+
+    <!-- 상품 이미지 -->
+    <typeAlias alias="ProductImage" type="org.personal.shopping.domain.product.domain.ProductImage"/>
+
+    <!-- 상품 상세 설명 -->
+    <typeAlias alias="ProductDescription" type="org.personal.shopping.domain.product.domain.ProductDescription"/>
+
   </typeAliases>
 </configuration>
