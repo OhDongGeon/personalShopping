@@ -27,9 +27,9 @@
                     <div class="row clear-fix">
                     <c:forEach var="product" items="${productGrid}" varStatus="status">
                         <div class="product">
-                            <a href="<c:url value='/products/${product.productId}/categories/${product.categoryId}'/>">
+                            <a href="<c:url value='/products/${product.productId}'/>">
                                 <img src="${product.imageUrl}" alt="${product.productId}">
-                                <h3>${product.productId}</h3>
+                                <h3>${product.productName}</h3>
                                 <p class="price">${product.price}</p>
                             </a>
                         </div>

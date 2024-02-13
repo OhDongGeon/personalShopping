@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.personal.shopping.domain.mapper.ReviewMapper">
+
+  <!-- 리뷰 조회 -->
+  <select id="findReviewDetailByProductId" resultType="ReviewDetail">
+    select re.review_id
+         , re.consumer_id
+         , co.name          consumer_name
+         , re.product_id
+         , re.rating
+         , re.review_text
+         , date_format(re.created_at, '%y.%m.%d')   created_at
+         , po.option_size
+         , po.option_color
+      from review			      re
+inner join product_option	  po
+        on po.option_id		  = re.option_id
+inner join consumer			    co
+        on co.consumer_id	  = re.consumer_id
+     where po.product_id	  = #{productId}
+  order by re.created_at desc
+     limit #{offset}, #{pageSize}
+  </select>
+
+  <!-- 상품 아이디 기준 컬러 조회 -->
+  <select id="findReviewSummaryByProductId" parameterType="Long" resultType="ReviewSummary">
+    select count(review_id)         reviewCount
+         , truncate(avg(rating), 1)	ratingAvg
+      from review
+     where product_id = #{productId}
+  </select>
+
+</mapper>

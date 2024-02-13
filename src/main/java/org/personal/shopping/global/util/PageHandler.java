@@ -18,7 +18,7 @@ public class PageHandler {
     private boolean showNext; // 다음 페이지로 이동 보여줄지 여부
 
 
-    public PageHandler (int totalCnt, int page, int pageSize) {
+    public PageHandler(int totalCnt, int page, int pageSize) {
 
         this.totalCnt = totalCnt;
         this.page = page;
@@ -29,5 +29,11 @@ public class PageHandler {
         naviEnd = Math.min(naviBegin + naviSize - 1, totalPageSize);
         showPrev = naviBegin != 1;
         showNext = naviEnd != totalPageSize;
+    }
+
+    // 페이지 offest 계산
+    public static int pageOffset(int page, int pageSize) {
+
+        return Math.max((page - 1) * pageSize, 0);
     }
 }
