@@ -28,5 +28,8 @@
     <!-- 상품 상세 설명 -->
     <typeAlias alias="ProductDescription" type="org.personal.shopping.domain.product.domain.ProductDescription"/>
 
+    <!-- 리뷰 -->
+    <typeAlias alias="ReviewSummary" type="org.personal.shopping.domain.review.model.dto.ReviewSummaryDto"/>
+    <typeAlias alias="ReviewDetail" type="org.personal.shopping.domain.review.model.dto.ReviewDetailDto"/>
   </typeAliases>
 </configuration>

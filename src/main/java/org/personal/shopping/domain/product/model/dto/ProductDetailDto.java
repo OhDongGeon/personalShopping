@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.personal.shopping.domain.product.domain.Product;
 import org.personal.shopping.domain.product.domain.ProductDescription;
 import org.personal.shopping.domain.product.domain.ProductImage;
+import org.personal.shopping.domain.review.model.dto.ReviewSummaryDto;
 
 @Getter
 @Setter
@@ -18,10 +19,12 @@ public class ProductDetailDto {
     private List<ProductColorDto> productColors;
     private List<ProductSizeDto> productSizes;
     private List<ProductDescription> productDescriptions;
+    private ReviewSummaryDto reviewSummary;
 
 
     public static ProductDetailDto of(List<ProductImage> productImages, Product product,
-        List<ProductColorDto> productColors, List<ProductSizeDto> productSizes, List<ProductDescription> productDescriptions) {
+        List<ProductColorDto> productColors, List<ProductSizeDto> productSizes,
+        List<ProductDescription> productDescriptions, ReviewSummaryDto reviewSummary) {
 
         return ProductDetailDto.builder()
             .productImages(productImages)
@@ -29,6 +32,7 @@ public class ProductDetailDto {
             .productColors(productColors)
             .productSizes(productSizes)
             .productDescriptions(productDescriptions)
+            .reviewSummary(reviewSummary)
             .build();
     }
 }

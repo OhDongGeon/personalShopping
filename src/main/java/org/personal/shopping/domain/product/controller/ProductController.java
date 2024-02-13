@@ -29,7 +29,7 @@ public class ProductController {
 
     // 카테고리 기준 상품 그리드 조회
     @GetMapping()
-    public String findProductByCategory(Model model, @RequestParam("main") Long main,
+    public String getProductByCategory(Model model, @RequestParam("main") Long main,
         @RequestParam(value = "sub", required = false) Long sub,
         @RequestParam(value = "page", defaultValue = "1") int page,
         @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
@@ -53,9 +53,8 @@ public class ProductController {
     }
 
     // 상품 정보 조회
-    @GetMapping("/{productId}/categories/{categoryId}")
-    public String getProductDetail(Model model, @PathVariable("productId") Long productId,
-        @PathVariable("categoryId") String categoryId) {
+    @GetMapping("/{productId}")
+    public String getProductDetail(Model model, @PathVariable("productId") Long productId) {
 
         // 상품 조회
         ProductDetailDto productDetail = productService.getProductDetail(productId);
